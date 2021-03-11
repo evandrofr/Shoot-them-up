@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Inimigo
   - Tiro
+  - Wall_up
+  - Wall_down
+  - Wall_right
+  - Wall_left
   layers:
   - Default
   - TransparentFX

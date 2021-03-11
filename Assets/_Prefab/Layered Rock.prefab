@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3941912359195629533}
   - component: {fileID: 8865063145139319591}
   - component: {fileID: -5032311558357696713}
-  - component: {fileID: 8158318917252710635}
+  - component: {fileID: 5829336834180238443}
   m_Layer: 0
   m_Name: Layered Rock
   m_TagString: Inimigo
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 37000225526cf9e4f9402d3363567da5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2f3b16cf0fb23a45bb7b862421a902b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 2.4, y: 2.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &3941912359195629533
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3974375643315322525}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -140,7 +140,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8158318917252710635
+--- !u!114 &5829336834180238443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,6 +149,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3974375643315322525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a04a09a97a68b45b6d787769103618, type: 3}
+  m_Script: {fileID: 11500000, guid: 462343d7dc28c934e848f8bf6bdf64b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  td: {fileID: 11400000, guid: f3bb0af406e797f44a863c80d412390e, type: 2}
+  explosionSFX: {fileID: 8300000, guid: 21dc772298ae5bc499ca12f1d3a5ebb9, type: 3}

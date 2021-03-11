@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2255657440611698557}
   - component: {fileID: 2682781289042430976}
   - component: {fileID: 4462213803470292064}
+  - component: {fileID: 928510287752230198}
   m_Layer: 0
   m_Name: Tiro
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7873695160775404277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.4268403, y: -1.6310599, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6494cc717ceb14c94ea3b4d0175799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  td: {fileID: 11400000, guid: f3bb0af406e797f44a863c80d412390e, type: 2}
+  td: {fileID: 11400000, guid: aab071d785dccc0449771efde4038af0, type: 2}
   _original: {fileID: 0}
 --- !u!50 &2682781289042430976
 Rigidbody2D:
@@ -145,3 +146,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &928510287752230198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873695160775404277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156c63327f981d443a0c40f28aae0597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

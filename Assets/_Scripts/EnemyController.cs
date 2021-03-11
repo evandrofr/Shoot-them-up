@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
 
     private int _lifes;
+    public AudioClip explosionSFX;
 
     public void Start(){
         _lifes = 3;
@@ -22,6 +23,7 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     public void Die(){
+        AudioManager.PlaySFX(explosionSFX);
         Destroy(gameObject);
     }
 

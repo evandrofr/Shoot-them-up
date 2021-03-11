@@ -8,6 +8,10 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     public GameObject bullet;
     public Transform arma01;
 
+    public AudioClip shootSFX;
+
+    public float wall_right, wall_left, wall_up, wall_down;
+
     private int _lifes;
 
     public float shootDelay = 1.0f;
@@ -21,8 +25,9 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
 
     public void Shoot(){
         if (Time.time - _lastShootTimestamp < shootDelay) return;
+        AudioManager.PlaySFX(shootSFX);
         _lastShootTimestamp = Time.time;
-        Instantiate(bullet, arma01.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+        Instantiate(bullet, arma01.position, Quaternion.identity);
     }
 
     public void TakeDamage(){
@@ -42,7 +47,7 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
         animator.SetFloat("VelocityY", yInput);
         if(Input.GetAxisRaw("Jump") != 0){
            Shoot();
-       }
+        }
         
 
     }    
@@ -53,6 +58,16 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
             Destroy(collision.gameObject);
             TakeDamage();
         }
+        if (collision.gameObject.CompareTag("Wall_up")){
+            transform.position = new Vector2(transform.position.x, wall_down);
+        } else if (collision.gameObject.CompareTag("Wall_down")){
+            transform.position = new Vector2(transform.position.x, wall_up);
+        } else if (collision.gameObject.CompareTag("Wall_left")){
+            transform.position = new Vector2(wall_right, transform.position.y);
+        } else if (collision.gameObject.CompareTag("Wall_right")){
+            transform.position = new Vector2(wall_left, transform.position.y);
+        }
+        
 }
 
     
