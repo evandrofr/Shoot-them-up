@@ -8,7 +8,10 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     public AudioClip explosionSFX;
     public GameObject tiro;
 
+    GameManager gm;
+
     public void Start(){
+        gm = GameManager.GetInstance();
         _lifes = 3;
     }
 
@@ -25,12 +28,14 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
 
     public void Die(){
         AudioManager.PlaySFX(explosionSFX);
+        gm.pontos += 100;
         Destroy(gameObject);
     }
 
     float angle = 0;
 
     private void FixedUpdate(){
+        if (gm.gameState != GameManager.GameState.GAME) return;
         angle += 0.1f;
         Mathf.Clamp(angle, 0.0f, 2.0f * Mathf.PI);
         float x = Mathf.Sin(angle);

@@ -12,14 +12,15 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
 
     public float wall_right, wall_left, wall_up, wall_down;
 
-    private int _lifes;
-
     public float shootDelay = 1.0f;
     private float _lastShootTimestamp = 0.0f;
 
+    GameManager gm;
+
+
     public void Start(){
+        gm = GameManager.GetInstance();
         animator = gameObject.GetComponent<Animator>();
-        _lifes = 5;
     }
 
 
@@ -31,17 +32,23 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
     }
 
     public void TakeDamage(){
-        _lifes--;
-        if (_lifes <= 0){
+        gm.vidas--;
+        if (gm.vidas <= 0){
             Die();  
         } 
     }
 
     public void Die(){
-        Destroy(gameObject);
+        gm.ChangeState(GameManager.GameState.ENDGAME);
     }
 
     void FixedUpdate(){
+        if (gm.gameState != GameManager.GameState.GAME) return;
+
+        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME){
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        } 
+
         float yInput = Input.GetAxis("Vertical");
         float xInput = Input.GetAxis("Horizontal");
         Thrust(xInput, yInput);
