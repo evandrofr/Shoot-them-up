@@ -19,7 +19,7 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
 
     public void Start(){
         animator = gameObject.GetComponent<Animator>();
-        _lifes = 10;
+        _lifes = 5;
     }
 
 
@@ -32,7 +32,9 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
 
     public void TakeDamage(){
         _lifes--;
-        if (_lifes <= 0) Die();
+        if (_lifes <= 0){
+            Die();  
+        } 
     }
 
     public void Die(){
@@ -58,13 +60,13 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
             Destroy(collision.gameObject);
             TakeDamage();
         }
-        if (collision.gameObject.CompareTag("Wall_up")){
+        if (collision.gameObject.name == "Wall_up"){
             transform.position = new Vector2(transform.position.x, wall_down);
-        } else if (collision.gameObject.CompareTag("Wall_down")){
+        } else if (collision.gameObject.name == "Wall_down"){
             transform.position = new Vector2(transform.position.x, wall_up);
-        } else if (collision.gameObject.CompareTag("Wall_left")){
+        } else if (collision.gameObject.name == "Wall_left"){
             transform.position = new Vector2(wall_right, transform.position.y);
-        } else if (collision.gameObject.CompareTag("Wall_right")){
+        } else if (collision.gameObject.name == "Wall_right"){
             transform.position = new Vector2(wall_left, transform.position.y);
         }
         

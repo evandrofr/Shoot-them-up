@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
+public class BossController : SteerableBehaviour, IShooter, IDamageable{
 
     private int _lifes;
     public AudioClip explosionSFX;
     public GameObject tiro;
 
     public void Start(){
-        _lifes = 3;
+        _lifes = 15;
     }
 
     public void Shoot(){
