@@ -7,10 +7,12 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     private int _lifes;
     public AudioClip explosionSFX;
     public GameObject tiro;
+    private GameObject player;
 
     GameManager gm;
 
     public void Start(){
+        player = GameObject.Find("Player");
         gm = GameManager.GetInstance();
         _lifes = 3;
     }
@@ -32,16 +34,15 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
         Destroy(gameObject);
     }
 
-    float angle = 0;
+    
 
     private void FixedUpdate(){
         if (gm.gameState != GameManager.GameState.GAME) return;
-        angle += 0.1f;
-        Mathf.Clamp(angle, 0.0f, 2.0f * Mathf.PI);
-        float x = Mathf.Sin(angle);
-        float y = Mathf.Cos(angle);
-
-        Thrust(x, y);
+        transform.Rotate(0,0,transform.rotation.z+1f, Space.Self);
+        float step =  1f * Time.deltaTime; 
+        if (player != null){
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+        }
        
     }
 }

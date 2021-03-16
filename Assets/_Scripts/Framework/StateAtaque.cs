@@ -5,10 +5,11 @@ using UnityEngine;
 public class StateAtaque : State{
     SteerableBehaviour steerable;
     IShooter shooter;
+    GameManager gm;
 
     public override void Awake(){
         base.Awake();
-
+        
         Transition ToPatrulha = new Transition();
         ToPatrulha.condition = new ConditionDistGT(transform,
             GameObject.FindWithTag("Player").transform,
@@ -25,12 +26,15 @@ public class StateAtaque : State{
             throw new MissingComponentException("Este GameObject não implementa IShooter");
         }
     }
+    public void Start(){
+        gm = GameManager.GetInstance();
+    }
 
 
     public float shootDelay = 1.0f;
     private float _lastShootTimestamp = 0.0f;
     public override void Update(){
-
+        if (gm.gameState != GameManager.GameState.GAME) return;
         //TODO: Movimentação quando atacando
 
         if (Time.time - _lastShootTimestamp < shootDelay) return;

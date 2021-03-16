@@ -7,6 +7,7 @@ public class BossController : SteerableBehaviour, IShooter, IDamageable{
     private int _lifes;
     public AudioClip explosionSFX;
     public GameObject tiro;
+    public float wall_right, wall_left, wall_up, wall_down;
 
     GameManager gm;
 
@@ -42,6 +43,21 @@ public class BossController : SteerableBehaviour, IShooter, IDamageable{
         float y = Mathf.Cos(angle);
 
         Thrust(x, y);
+
+        
        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        if (collision.gameObject.name == "Wall_up"){
+            transform.position = new Vector2(transform.position.x, wall_down);
+        } else if (collision.gameObject.name == "Wall_down"){
+            transform.position = new Vector2(transform.position.x, wall_up);
+        } else if (collision.gameObject.name == "Wall_left"){
+            transform.position = new Vector2(wall_right, transform.position.y);
+        } else if (collision.gameObject.name == "Wall_right"){
+            transform.position = new Vector2(wall_left, transform.position.y);
+        }
+        
     }
 }

@@ -47,7 +47,10 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable{
 
         if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME){
             gm.ChangeState(GameManager.GameState.PAUSE);
-        } 
+        }
+        if(gm.pontos >= 2500){
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
 
         float yInput = Input.GetAxis("Vertical");
         float xInput = Input.GetAxis("Horizontal");
