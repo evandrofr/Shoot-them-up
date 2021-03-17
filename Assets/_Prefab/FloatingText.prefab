@@ -81,7 +81,7 @@ TextMesh:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5496216629570398877}
   m_Text: +100
-  m_OffsetZ: 1
+  m_OffsetZ: 3
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
@@ -106,4 +106,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbdcc520da531145b51579993d4e038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyTime: 3
