@@ -9,6 +9,9 @@ public class BossController : SteerableBehaviour, IShooter, IDamageable{
     public GameObject tiro;
     public float wall_right, wall_left, wall_up, wall_down;
 
+    public GameObject floatingTextPreFab;
+    private GameObject floatingText;
+
     GameManager gm;
 
     public void Start(){
@@ -23,6 +26,7 @@ public class BossController : SteerableBehaviour, IShooter, IDamageable{
     public void TakeDamage(){
         _lifes --;
         if(_lifes <= 0){
+            ShowFloatingText();
             Die();
         }
     }
@@ -59,5 +63,22 @@ public class BossController : SteerableBehaviour, IShooter, IDamageable{
             transform.position = new Vector2(wall_left, transform.position.y);
         }
         
+    }
+
+    public void Destruir(){
+        if (gm.gameState == GameManager.GameState.MENU){
+            Destroy(gameObject);
+        }
+    }
+
+    public void Update(){
+        Destruir();
+    }
+
+    
+    public void ShowFloatingText(){
+        floatingText = Instantiate(floatingTextPreFab, transform.position, Quaternion.identity, transform);
+        floatingText.GetComponent<TextMesh>().text = "+2000";
+        floatingText.transform.parent = GameObject.Find("BossPool").transform;
     }
 }

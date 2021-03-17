@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
 
+
+    public GameObject floatingTextPreFab;
+    private GameObject floatingText;
     private int _lifes;
     public AudioClip explosionSFX;
     public GameObject tiro;
     private GameObject player;
+    private float rotation;
+    private float speed;
 
     GameManager gm;
 
@@ -15,6 +21,9 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
         player = GameObject.Find("Player");
         gm = GameManager.GetInstance();
         _lifes = 3;
+        rotation = Random.Range(10f,180f);
+        speed = Random.Range(0.3f,3f);
+        
     }
 
     public void Shoot(){
@@ -24,8 +33,14 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
     public void TakeDamage(){
         _lifes --;
         if(_lifes <= 0){
+            ShowFloatingText();
             Die();
         }
+    }
+
+    public void ShowFloatingText(){
+        floatingText = Instantiate(floatingTextPreFab, transform.position, Quaternion.identity, transform);
+        floatingText.transform.parent = GameObject.Find("AsteroidePool").transform;
     }
 
     public void Die(){
@@ -34,15 +49,25 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable{
         Destroy(gameObject);
     }
 
+    public void Destruir(){
+        if (gm.gameState == GameManager.GameState.MENU){
+            Destroy(gameObject);
+        }
+    }
+
     
 
     private void FixedUpdate(){
         if (gm.gameState != GameManager.GameState.GAME) return;
-        transform.Rotate(0,0,transform.rotation.z+1f, Space.Self);
-        float step =  1f * Time.deltaTime; 
+        float step =  speed * Time.deltaTime; 
         if (player != null){
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
         }
        
+    }
+
+    public void Update(){
+        Destruir();
+        transform.Rotate(new Vector3(0,0,rotation)*Time.deltaTime);
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidePool : MonoBehaviour{
+public class BossPool : MonoBehaviour{
 
     public GameObject ObjectToPool;
     public int PoolSize;
@@ -15,7 +15,7 @@ public class AsteroidePool : MonoBehaviour{
     private List<GameObject> PooledObjects;
 
     private void Construir(){
-        if (gm.gameState == GameManager.GameState.GAME){
+        if (gm.gameState == GameManager.GameState.MENU){
             PooledObjects = new List<GameObject>();
             for(int poolCount = 0; poolCount < PoolSize; poolCount++){
                 int x, y;
@@ -29,7 +29,6 @@ public class AsteroidePool : MonoBehaviour{
         }
     }
 
-
     private IEnumerator Spawner(){
         yield return new WaitForSeconds(time_spawn);
         while(gm.gameState == GameManager.GameState.GAME){
@@ -41,9 +40,9 @@ public class AsteroidePool : MonoBehaviour{
             GameObject pooled = Instantiate(ObjectToPool, posicao, Quaternion.identity, transform);
             pooled.SetActive(true);
             PooledObjects.Add(pooled);
-            time_spawn -= 0.1f;
-            if(time_spawn < 1f){
-                time_spawn = 1f;
+            time_spawn -= 0.2f;
+            if(time_spawn < 7f){
+                time_spawn = 7f;
             }
         }
     }
@@ -54,7 +53,7 @@ public class AsteroidePool : MonoBehaviour{
         gm = GameManager.GetInstance();
         GameManager.changeStateDelegate += Construir;
         Construir();
-        time_spawn = 5f;
+        time_spawn = 15f;
         StartCoroutine(Spawner());
     }
 
@@ -62,5 +61,6 @@ public class AsteroidePool : MonoBehaviour{
     void Update(){
         
     }
+
 
 }

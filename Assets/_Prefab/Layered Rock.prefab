@@ -144,5 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   td: {fileID: 11400000, guid: f3bb0af406e797f44a863c80d412390e, type: 2}
+  floatingTextPreFab: {fileID: 5496216629570398877, guid: 8f260033e8f380d44ae3cf9935cc923c,
+    type: 3}
+  floatingText: {fileID: 0}
   explosionSFX: {fileID: 8300000, guid: 21dc772298ae5bc499ca12f1d3a5ebb9, type: 3}
   tiro: {fileID: 0}
